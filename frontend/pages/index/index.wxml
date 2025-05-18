@@ -1,0 +1,50 @@
+<!--pages/index/index.wxml-->
+<view class="container">
+  <view class="header">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image>
+    <view class="title">AI虚拟衣柜</view>
+    <view class="subtitle">让时尚触手可及</view>
+  </view>
+  
+  <view class="card-container">
+    <view class="card" bindtap="navigateToTryonUpper">
+      <view class="card-icon tryon-icon-style"></view>
+      <view class="card-content">
+        <view class="card-title">虚拟试衣</view>
+        <view class="card-desc">将您喜欢的上装虚拟穿搭在自己身上</view>
+      </view>
+      <view class="card-arrow">></view>
+    </view>
+
+    <view class="card" bindtap="navigateToTryonLower">
+      <view class="card-icon tryon-icon-style"></view>
+      <view class="card-content">
+        <view class="card-title">虚拟试裤</view>
+        <view class="card-desc">将您喜欢的裤装虚拟穿搭在自己身上</view>
+      </view>
+      <view class="card-arrow">></view>
+    </view>
+
+    <view class="card" bindtap="navigateToTryonDress">
+      <view class="card-icon tryon-icon-style"></view>
+      <view class="card-content">
+        <view class="card-title">虚拟试裙</view>
+        <view class="card-desc">将您喜欢的连衣裙虚拟穿搭在自己身上</view>
+      </view>
+      <view class="card-arrow">></view>
+    </view>
+    
+    <view class="card" bindtap="navigateToTransfer">
+      <view class="card-icon transfer-icon-style"></view>
+      <view class="card-content">
+        <view class="card-title">姿势迁移</view>
+        <view class="card-desc">将您的姿势应用到目标模特图像上</view>
+      </view>
+      <view class="card-arrow">></view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <text>AI驱动的虚拟时尚体验</text>
+  </view>
+</view>

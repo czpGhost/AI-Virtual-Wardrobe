@@ -1,0 +1,83 @@
+<view class="container">
+  <view class="page-header">
+    <text class="page-title">姿势迁移</text>
+    <text class="page-desc">上传源姿势和参考人物图像，AI将自动生成姿势迁移效果</text>
+  </view>
+
+  <view class="main-content">
+    <view class="section">
+      <view class="section-header">
+        <view class="section-number">1</view>
+        <text class="section-title">上传源姿势图像</text>
+      </view>
+      <view class="upload-area">
+        <view wx:if="{{!sourceSrc}}" class="image-placeholder">
+          <view class="placeholder-text">图片预览</view>
+        </view>
+        <image wx:else src="{{sourceSrc}}" mode="aspectFill" class="preview-image" bindtap="previewImage" data-src="{{sourceSrc}}"/>
+        <view class="upload-buttons">
+          <button type="primary" size="mini" bindtap="chooseImage" data-type="source" data-source="camera">
+            <text class="button-icon">📷</text> 拍照上传
+          </button>
+          <button type="default" size="mini" bindtap="chooseImage" data-type="source" data-source="album">
+            <text class="button-icon">🖼️</text> 从相册选择
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view class="section">
+      <view class="section-header">
+        <view class="section-number">2</view>
+        <text class="section-title">上传参考人物图像</text>
+      </view>
+      <view class="upload-area">
+        <view wx:if="{{!referenceSrc}}" class="image-placeholder">
+          <view class="placeholder-text">图片预览</view>
+        </view>
+        <image wx:else src="{{referenceSrc}}" mode="aspectFill" class="preview-image" bindtap="previewImage" data-src="{{referenceSrc}}"/>
+        <view class="upload-buttons">
+          <button type="primary" size="mini" bindtap="chooseImage" data-type="reference" data-source="camera">
+            <text class="button-icon">📷</text> 拍照上传
+          </button>
+          <button type="default" size="mini" bindtap="chooseImage" data-type="reference" data-source="album">
+            <text class="button-icon">🖼️</text> 从相册选择
+          </button>
+        </view>
+      </view>
+    </view>
+
+    <view class="action-section">
+      <button class="primary-button {{(!sourceSrc || !referenceSrc || isLoading) ? 'disabled' : ''}}" 
+              bindtap="startGeneration" 
+              disabled="{{!sourceSrc || !referenceSrc || isLoading}}">
+        <text wx:if="{{isLoading}}">生成中...</text>
+        <text wx:else>开始姿势迁移</text>
+      </button>
+    </view>
+
+    <view class="section result-section" wx:if="{{resultSrc}}">
+      <view class="section-header">
+        <view class="section-number">3</view>
+        <text class="section-title">生成结果</text>
+      </view>
+      <image src="{{resultSrc}}" mode="aspectFill" class="result-image" bindtap="previewImage" data-src="{{resultSrc}}"/>
+      <view class="result-actions">
+        <button size="mini" type="default" bindtap="saveImage">保存到相册</button>
+        <button size="mini" type="default" bindtap="shareImage">分享</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{isLoading}}" class="loading-overlay">
+    <view class="loading-content">
+      <view class="loading-spinner"></view>
+      <text class="loading-text">姿势迁移中，请稍候...</text>
+    </view>
+  </view>
+
+  <view wx:if="{{errorMsg}}" class="error-message">
+    <text>{{errorMsg}}</text>
+    <text class="close-error" bindtap="closeError">×</text>
+  </view>
+</view> 
